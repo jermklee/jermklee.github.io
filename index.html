@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         /* Reset and base styles */
@@ -207,7 +208,7 @@
 
     <div class="hero-container">
         <div class="hero-content">
-            <h1 class="hero-title">Jeremy Lee</h1>
+            <h1 class="hero-title text-4xl font-bold mb-4 font-merriweather">Jeremy Lee</h1>
             <p class="hero-description">Aspiring Software Developer at UTD, focused on building innovative and user-friendly web experiences. Currently exploring new technologies and creating meaningful projects.</p>
             <div class="scroll-indicator">
                 <img src="/api/placeholder/24/24" alt="Scroll down" />
@@ -215,8 +216,9 @@
         </div>
     </div>
 
-    <section id="projects" class="projects-section">
-        <div class="projects-grid">
+    <main class="container mx-auto px-4">
+        <h2 class="text-3xl font-bold text-center mb-8 font-merriweather">Projects</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <div class="project-card">
                 <div class="project-image">
                     <img src="/api/placeholder/300/200" alt="Property Management App" />
@@ -228,7 +230,7 @@
             </div>
             <!-- Add more project cards as needed -->
         </div>
-    </section>
+    </main>
 
     <footer class="footer">
         <div class="footer-grid">
