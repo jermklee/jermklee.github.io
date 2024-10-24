@@ -2,61 +2,247 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width", intial-scale="1.0">
-    <meta name="description" content="Jeremy's Personal Portfolio">
-    <title>Jeremy Lee | Personal Website</title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jeremy Lee - Aspiring Software Developer building innovative web experiences">
+    <title>Jeremy Lee | Software Developer</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Reset and base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        /* Navigation */
+        .navigation {
+            padding: 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            background: rgba(255, 255, 255, 0.95);
+            z-index: 1000;
+        }
+
+        .nav-items {
+            display: flex;
+            justify-content: flex-end;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-link {
+            color: #333;
+            text-decoration: none;
+            margin-left: 2rem;
+            font-family: 'Inconsolata', monospace;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #0066cc;
+        }
+
+        /* Hero Section */
+        .hero-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: #666;
+            margin-bottom: 2rem;
+            font-family: 'Inconsolata', monospace;
+        }
+
+        .scroll-indicator {
+            margin-top: 4rem;
+            text-align: center;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* Projects Section */
+        .projects-section {
+            padding: 4rem 2rem;
+            background: #f8f8f8;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: #e0e0e0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        .footer {
+            padding: 4rem 2rem;
+            background: #fff;
+            border-top: 1px solid #eee;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            font-family: 'Inconsolata', monospace;
+            margin-bottom: 1rem;
+        }
+
+        .social-link {
+            display: block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-link:hover {
+            color: #0066cc;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .hero-description {
+                font-size: 1.1rem;
+            }
+
+            .navigation {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <h1>Jeremy Lee</h1>
+    <nav class="navigation">
+        <div class="nav-items">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#projects" class="nav-link">Projects</a>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <nav>
-            <u1>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </u1>
-        </nav>
-    </header>
+    </nav>
 
-    <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <div class="hero-container">
         <div class="hero-content">
-            <h2>Hello, I'm Jeremy Lee.</h2>
-            <p>I'm an aspiring Software Developer, and I build websites.</p>
-            <a href="#projects" class="btn">See My Work</a>
+            <h1 class="hero-title">Jeremy Lee</h1>
+            <p class="hero-description">Aspiring Software Developer at UTD, focused on building innovative and user-friendly web experiences. Currently exploring new technologies and creating meaningful projects.</p>
+            <div class="scroll-indicator">
+                <img src="/api/placeholder/24/24" alt="Scroll down" />
+            </div>
+        </div>
+    </div>
+
+    <section id="projects" class="projects-section">
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="/api/placeholder/300/200" alt="Property Management App" />
+                </div>
+                <div class="project-content">
+                    <h3 class="project-title">Property Management App</h3>
+                    <p>A comprehensive solution for property managers and tenants.</p>
+                </div>
+            </div>
+            <!-- Add more project cards as needed -->
         </div>
     </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <h2>About Me</h2>
-        <p>Currently attending the University of Texas at Dallas studying Computer Science. I love spending time with my friends and family, and playing games with my friends.</p>
-    </section>
-
-    <!-- Projects Section -->
-    <section class="projects" id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Property Management App</h3>
-            <p>As this app is currently still intellectual property, I'm using it as an example.</p>
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-section">
+                <h3>Connect with me</h3>
+                <a href="https://github.com/jermklee" class="social-link">➔ GitHub</a>
+                <a href="https://linkedin.com/in/jeremy-lee1" class="social-link">➔ LinkedIn</a>
+                <a href="mailto:jeremykwonlee@gmail.com" class="social-link">➔ Email</a>
+            </div>
+            <div class="footer-section">
+                <h3>Fun Facts</h3>
+                <p>Currently learning: Python</p>
+                <p>Favorite game: League of Legends 🎮</p>
+                <p>Coffee addiction level: Extreme</p>
+            </div>
         </div>
-    </section>
-
-    <!-- Contacts Section -->
-    <section class="contact" id="contact">
-        <h2>Contact Me</h2>
-        <p>Feel free to reach out to me at <a href="mailto:jeremykwonlee@gmail.com">jeremykwonlee@gmail.com!</a></p>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2024 Jeremy Lee. All rights reserved.</p>
     </footer>
-
 </body>
 </html>
