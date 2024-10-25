@@ -9,9 +9,18 @@
     <!-- Preconnect for performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&family=Inter:wght@400;500;600&family=Caprasimo:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --floral-white: #FFFAF0;
+            --isabelline: #F4F0EC;
+            --seashell: #FFF5EE;
+            --linen: #FAF0E6;
+            --cosmic-latte: #FFF8E7;
+            --magnolia: #FFF9F0;
+        }
         /* Reset and base styles */
         * {
             margin: 0;
@@ -19,11 +28,18 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Inter', sans-serif;
             line-height: 1.6;
             color: #333;
-            background-color: #fff;
+            background-color: #FFFAF0;
+            background-image: linear-gradient(rgba(224, 224, 224, 0.3) 1px, transparent 1px), linear-gradient(to right, rgba(224, 224, 224, 0.3) 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-attachment: fixed;
         }
 
         /* Navigation */
@@ -32,8 +48,9 @@
             position: fixed;
             width: 100%;
             top: 0;
-            background: rgba(255, 255, 255, 0.95);
+            background-color: rgba(255, 250, 240, 0.0);
             z-index: 1000;
+            transition: opacity 0.3s ease;
         }
 
         .nav-items {
@@ -55,6 +72,10 @@
             color: #0066cc;
         }
 
+        .navigation.hidden {
+            opacity: 0;
+        }
+
         /* Hero Section */
         .hero-container {
             min-height: 100vh;
@@ -65,23 +86,52 @@
             padding: 2rem;
             max-width: 1200px;
             margin: 0 auto;
+
         }
 
         .hero-content {
             max-width: 600px;
+            animation: fadeIn 1s ease-out;
         }
+
+        @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 
         .hero-title {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
             font-weight: 600;
+            font-family: 'Caprasimo', monospace;
         }
 
         .hero-description {
-            font-size: 1.25rem;
+            font-size: 1.23rem;
             color: #666;
             margin-bottom: 2rem;
             font-family: 'Inconsolata', monospace;
+            white-space: pre-wrap;
+            overflow: hidden;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            position: relative;
+            min-height: 6em;
+            line-height: 1.5;
+            padding-right: .1em;
+        }
+        .hero-description::after {
+            content: '|';
+            position: absolute;
+            animation: blink-caret 0.75s step-end infinite;
+            line-height: inherit;
+            font-size: inherit;
+            height: 1.2em;
+        }
+
+        @keyframes blink-caret {
+            from, to {opacity: 0;}
+            50% {opacity: 1;}
         }
 
         .scroll-indicator {
@@ -102,10 +152,24 @@
             }
         }
 
+        .scroll-indicator i {
+            font-size: 36px;
+            color: #333; /* Adjust color as needed */
+        }
+
         /* Projects Section */
+        .section-title {
+            font-family: 'Caprasimo', monospace;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
         .projects-section {
             padding: 4rem 2rem;
-            background: #f8f8f8;
+            background: rgba(244, 240, 236, 0);
+            margin-bottom: 4rem;
         }
 
         .projects-grid {
@@ -117,7 +181,7 @@
         }
 
         .project-card {
-            background: white;
+            background: var(--magnolia);
             border-radius: 8px;
             overflow: hidden;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -151,8 +215,8 @@
         /* Footer */
         .footer {
             padding: 4rem 2rem;
-            background: #fff;
-            border-top: 1px solid #eee;
+            background: var(--magnolia);
+            border-top: 1px solid var(--magnolia);
         }
 
         .footer-grid {
@@ -166,6 +230,11 @@
         .footer-section h3 {
             font-family: 'Inconsolata', monospace;
             margin-bottom: 1rem;
+        }
+
+        .social-link,
+        .footer-section p {
+            font-family: 'Inconsolata', monospace;
         }
 
         .social-link {
@@ -194,26 +263,29 @@
                 padding: 1rem;
             }
         }
+
     </style>
 </head>
 <body>
     <nav class="navigation">
         <div class="nav-items">
-            <a href="#about" class="nav-link">About</a>
+            <a href="#hero" class="nav-link">About</a>
             <a href="#projects" class="nav-link">Projects</a>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
     </nav>
 
-    <div class="hero-container">
+    <div id="hero" class="hero-container">
         <div class="hero-content">
             <h1 class="hero-title">Jeremy Lee</h1>
-            <p class="hero-description">Aspiring Software Developer at UTD, focused on building innovative and user-friendly web experiences. Currently exploring new technologies and creating meaningful projects.</p>
+            <p id="hero-description" class="hero-description"></p>
             <div class="scroll-indicator">
-                <img src="/api/placeholder/24/24" alt="Scroll down" />
+                <i class="fa-solid fa-arrow-down-long"></i>
             </div>
         </div>
     </div>
+
+    <h2 class="section-title">Projects</h2>
 
     <section id="projects" class="projects-section">
         <div class="projects-grid">
@@ -230,7 +302,7 @@
         </div>
     </section>
 
-    <footer class="footer">
+    <footer id="contact" class="footer">
         <div class="footer-grid">
             <div class="footer-section">
                 <h3>Connect with me</h3>
@@ -246,5 +318,59 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        const text = "Aspiring Software Developer at UTD, focused on building innovative and user-friendly web experiences. Currently exploring new technologies and creating meaningful projects.";
+        const speed = 35;
+        let i = 0;
+
+
+        function typeWriter() {
+        const heroDescription = document.getElementById("hero-description");
+        if (i < text.length) {
+            heroDescription.textContent += text.charAt(i);
+            i++;
+            updateCursorPosition(heroDescription);
+            setTimeout(typeWriter, speed);
+        }
+    }
+
+    function updateCursorPosition(element) {
+        const textNode = element.firstChild;
+        const range = document.createRange();
+        range.setStart(textNode, element.textContent.length);
+        range.setEnd(textNode, element.textContent.length);
+        const rect = range.getBoundingClientRect();
+        const containerRect = element.getBoundingClientRect();
+        
+        const cursorLeft = rect.right - containerRect.left;
+        
+        element.style.setProperty('--cursor-left', `${cursorLeft}px`);
+    }
+
+        // Start the typewriter effect when the page loads
+        window.onload = typeWriter;
+
+        let lastScrollTop = 0;
+        const nav = document.querySelector('.navigation');
+        const scrollThreshold = 5; // Adjust this value to change sensitivity
+
+        window.addEventListener('scroll', function() {
+            let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (Math.abs(scrollTop - lastScrollTop) <= scrollThreshold)
+                return; // Ignore small scroll changes
+            
+            if (scrollTop > lastScrollTop) {
+                // Scrolling down
+                nav.classList.add('hidden');
+            } else {
+                // Scrolling up
+                nav.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+        });
+    </script>
 </body>
 </html>
