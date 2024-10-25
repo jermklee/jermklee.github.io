@@ -78,6 +78,7 @@
 
         /* Hero Section */
         .hero-container {
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -100,7 +101,7 @@
     }
 
         .hero-title {
-            font-size: 2.5rem;
+            font-size: 4rem;
             margin-bottom: 1.5rem;
             font-weight: 600;
             font-family: 'Caprasimo', monospace;
@@ -135,7 +136,10 @@
         }
 
         .scroll-indicator {
-            margin-top: 4rem;
+            position: absolute;
+            bottom: 4rem;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
             animation: bounce 2s infinite;
         }
@@ -279,9 +283,9 @@
         <div class="hero-content">
             <h1 class="hero-title">Jeremy Lee</h1>
             <p id="hero-description" class="hero-description"></p>
-            <div class="scroll-indicator">
-                <i class="fa-solid fa-arrow-down-long"></i>
-            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fa-solid fa-arrow-down-long"></i>
         </div>
     </div>
 
@@ -321,7 +325,7 @@
 
     <script>
         const text = "Aspiring Software Developer at UTD, focused on building innovative and user-friendly web experiences. Currently exploring new technologies and creating meaningful projects.";
-        const speed = 35;
+        const speed = 30;
         let i = 0;
 
 
@@ -330,12 +334,12 @@
         if (i < text.length) {
             heroDescription.textContent += text.charAt(i);
             i++;
-            updateCursorPosition(heroDescription);
+          /*  updateCursorPosition(heroDescription); */
             setTimeout(typeWriter, speed);
         }
     }
 
-    function updateCursorPosition(element) {
+   /* function updateCursorPosition(element) {
         const textNode = element.firstChild;
         const range = document.createRange();
         range.setStart(textNode, element.textContent.length);
@@ -345,8 +349,8 @@
         
         const cursorLeft = rect.right - containerRect.left;
         
-        element.style.setProperty('--cursor-left', `${cursorLeft}px`);
-    }
+        element.style.setProperty('--cursor-left', `${cursorLeft}px`); 
+    } */
 
         // Start the typewriter effect when the page loads
         window.onload = typeWriter;
